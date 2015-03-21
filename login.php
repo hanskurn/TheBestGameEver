@@ -34,6 +34,6 @@
           </tr>
       </table>
   </form>
-  <a href="createuser.html"> New Account</a>
+  <a href="createuser.php"> New Account</a>
  </body>
 </html>

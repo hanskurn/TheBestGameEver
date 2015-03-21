@@ -53,7 +53,7 @@
     		die('Mysql connection error');
 		}
 		
-   		$query_chartypes = "SELECT name, feature, cost FROM TheBestGame.CharacterType";
+   		$query_chartypes = "SELECT id, name, feature, cost FROM TheBestGame.CharacterType";
    		$result = mysqli_query($conn, $query_chartypes);
    		if (!$result){
    			echo "No Data Avialible."; 
@@ -63,7 +63,8 @@
    				$name = $row['name'];
    				$feature = $row['feature'];
    				$cost = $row['cost'];
-   				print '<tr><td align="center"><input type="checkbox" name="chartype" value="' . $name . '" ></td>
+   				$id = $row['id'];
+   				print '<tr><td align="center"><input type="radio" name="chartype" value="' . $id . '" ></td>
    							<td> Name: ' . $name . '</td>
    							<td> Features: ' . $feature . '</td>
    							<td> Cost: ' . $cost .  '</td></tr>';
