@@ -12,9 +12,6 @@
             die("Connection failed: " . $conn->connect_error);
         } 
     echo "Connected successfully";
-        ?>
-        
-        <?php
         
         $name = $_POST["name"];
         $email = $_POST["email"];
@@ -29,3 +26,18 @@
     		echo "Error: " . $sql . "<br>" . $conn->error;
 		}
 		?>
+		
+		<?php
+		
+		$getid = "SELECT idPlayers 
+				  FROM TheBestGame.Players
+				  WHERE name = $name
+				  AND email = $email
+				  AND password = $password";
+				   
+		$result = mysqli_query($conn, $getid);
+		
+		echo "Result:<br><br>";
+		
+		print $result;
+				?>
