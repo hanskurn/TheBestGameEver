@@ -25,7 +25,7 @@ $email = $_POST["email"];
 
 $result = mysqli_query($conn, "SELECT C.name AS CharaterName, C.health AS Health, C.age AS Age 
 	                         FROM character C, Plaryer P 
-	                         WHERE P.email = $email AND C.playerId = P.idPlayers");
+	                         WHERE P.email = '$email' AND C.playerId = P.idPlayers");
 
 $row = mysqli_fetch_array($result);
 ?>
@@ -56,7 +56,7 @@ echo "<br>";
 
 $result2 = mysqli_query($conn, "SELECT O.name AS ObjectName, O.strengh AS Strength, O.power AS power 
 	                            FROM hasObject H, Character C, CreateObject O, Player P 
-	                            WHERE H.charaterName = C.name AND H.objectID = O.objectID AND P.email = $email 
+	                            WHERE H.charaterName = C.name AND H.objectID = O.objectID AND P.email = '$email' 
                                       AND C.playerId = P.idPlayers");
 ?>
 
@@ -85,12 +85,23 @@ echo "</table>";
 <font size="6" color="blue"> <?php echo "Settings:"; ?> </font>
 <br>
 <?php 
+$result3 = mysqli_query($conn, "SELECT P.coins AS Coins 
+                             FROM Plaryer P 
+                             WHERE P.email = '$email'");
+$row3 = mysqli_fetch_array($result3);
+$coins = $row3['Coins'];
+
 echo "<table border='1'>
-<tr>
-<th>Email</th>
-<th>Coins</th>
-</tr>";
-echo "</table>";
+  <tr>
+    <td>Email</td>
+    <td> $email </td>
+  </tr>
+  <tr>
+    <td>Coins</td>
+    <td>$coins</td>
+  </tr>
+  <tr>
+</table>";
 
 mysqli_close($conn);
 ?>
