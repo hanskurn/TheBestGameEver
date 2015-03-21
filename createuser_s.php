@@ -16,6 +16,8 @@
         $name = $_POST["name"];
         $email = $_POST["email"];
         $password = $_POST["password"];
+        $char_name = $_POST["charname"];
+        $char_type = $_POST["chartype"];
         
         $sql = "INSERT INTO TheBestGame.Players (name, email, password, coins)
 		VALUES ('$name', '$email', '$password', 500)";
@@ -25,19 +27,27 @@
 		} else {
     		echo "Error: " . $sql . "<br>" . $conn->error;
 		}
-		?>
-		
-		<?php
 		
 		$getid = "SELECT idPlayers 
 				  FROM TheBestGame.Players
-				  WHERE name = $name
-				  AND email = $email
-				  AND password = $password";
+				  WHERE name = '$name'
+				  AND email = '$email'
+				  AND password = '$password'";
 				   
 		$result = mysqli_query($conn, $getid);
 		
 		echo "Result:<br><br>";
 		
-		print $result;
-				?>
+		$id = mysqli_fetch_array($result)['idPlayers'];
+		
+		$Update_Character ="INSERT INTO TheBestGame.Character (name, health, age, characterTypeID, playerID)
+		VALUES ('$char_name', 10, 0, $char_type, $id)";
+		
+		if ($conn->query($Update_Character) === TRUE) {
+    		echo "New character created successfully";
+		} else {
+    		echo "Error: " . $sql . "<br>" . $conn->error;
+		}
+		
+		header('Location: http://localhost/TheBestGameEver/login.php');
+		?>
