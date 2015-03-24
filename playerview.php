@@ -35,6 +35,12 @@
     ?>
 
     <font size="10" color="blue"> <?php echo "Hi " . $row['playerName'] . "! Welcome to The Best Game Ever!"; ?> </font>
+    <form action="logout.php" method="post">
+    <table border="1">
+        <tr>
+            <td colspan="2"><input type="submit" value="Logout"></td>
+        </tr>
+    </table>
     <br>
     <br>
 
