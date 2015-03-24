@@ -1,4 +1,5 @@
 <?php
+
 $servername = "localhost";
 $username = "root";
 $password = "DevonEdwards";
@@ -11,7 +12,6 @@ $adminID = 12345;
 $id = 30987;
 $timestamp =00000000;
 
-echo $name. $feature. $cost . $timestamp;
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $db);
