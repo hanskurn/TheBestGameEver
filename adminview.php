@@ -52,9 +52,9 @@
 
 <?php
 //connect to DB
-$servername = "localhost";
+$servername = "127.0.0.1:3306";
 $username = "root";
-$password = "Hannahskurnik";
+$password = "Asd123890";
 $db = "thebestgameever";
 // Create connection
 $conn = new mysqli($servername, $username, $password, $db);
@@ -118,7 +118,7 @@ mysqli_close($conn);
 <br>
 
 <br>
-<form action="php/typeLookUps.php" method="post" target='objlookupfr'>
+<form action="php/objTypeLookUp.php" method="post" target='objlookupfr'>
     <label for="Objname"> Find number of object types:</label>
     <input type="text" id="Objname" name="Objname">
     <input type="submit" value="Submit">

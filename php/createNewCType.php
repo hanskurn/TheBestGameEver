@@ -1,16 +1,15 @@
 <?php
 
-$servername = "localhost";
+$servername = "127.0.0.1:3306";
 $username = "root";
-$password = "Hannahskurnik";
+$password = "Asd123890";
 $db = "thebestgameever";
 
 $name = $_POST["Name"];
 $feature = $_POST["Feature"];
 $cost = $_POST["Cost"];
 $adminID = 12345;
-$id = 30987;
-$timestamp =00000000;
+$timestamp =time();
 
 
 // Create connection
@@ -21,7 +20,7 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-$sql = "INSERT INTO charactertype(id, name, feature, cost, adminID, timestamp)
+$sql = "INSERT INTO charactertype(name, feature, cost, adminID, timestamp)
         VALUES ('$name', '$feature', '$cost', '$adminID', '$timestamp')";
 
 if ($conn->query($sql) === TRUE) {
@@ -29,5 +28,6 @@ if ($conn->query($sql) === TRUE) {
 } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
 }
+mysqli_close($conn);
 
 ?>

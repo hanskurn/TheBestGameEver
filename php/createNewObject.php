@@ -1,15 +1,14 @@
 <?php
-$servername = "localhost";
+$servername = "127.0.0.1:3306";
 $username = "root";
-$password = "Hannahskurnik";
+$password = "Asd123890";
 $db = "thebestgameever";
 
 $name = $_POST["Name"];
 $strength = $_POST["Strength"];
 $power = $_POST["Power"];
 $adminid = 1;
-$objectid = 30987;
-$timestamp =00000000;
+$timestamp =time();
 
 
 
@@ -21,13 +20,15 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-$sql = "INSERT INTO createobject(TimeStamp  , adminID, objectID, name, strength, power)
-        VALUES ('$timestamp', '$adminid', '$objectid', '$name', '$strength','$power')";
+$sql = "INSERT INTO createobject(TimeStamp, adminID, name, strength, power)
+        VALUES ('$timestamp', '$adminid', '$name', '$strength','$power')";
 
 if ($conn->query($sql) === TRUE) {
     echo "New record created successfully";
 } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
 }
+
+mysqli_close($conn);
 
 ?>
