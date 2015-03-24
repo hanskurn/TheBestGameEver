@@ -7,16 +7,51 @@
     ?>
 </head>
 <body>
-<table>
-    <tr>
-        <td>
-            Admin Name
-        </td>
-        <td>
-            Email address
-        </td>
-    </tr>
-</table>
+<?php
+session_start();
+$id = $_SESSION['id'];
+
+//connect to DB
+$servername = "127.0.0.1:3306";
+$username = "root";
+$password = "Asd123890";
+$db = "thebestgameever";
+// Create connection
+$conn = new mysqli($servername, $username, $password, $db);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+$findAdmin = "SELECT A.name AS adminName, A.email AS adminEmail
+              FROM Admin A
+              WHERE A.idAdmin = '$id'";
+
+$admin = mysqli_query($conn, $findAdmin);
+if (!$admin) {
+            printf("Error: %s\n", mysqli_error($conn));
+            exit();
+        }
+$admin_ = mysqli_fetch_array($admin);
+$Aname = $admin_['adminName'];
+$Aemail = $admin_['adminEmail'];
+?>
+<font size="10" color="blue"> <?php echo "Hi " . $Aname . "! Welcome to The Best Game Ever!"; ?> </font>
+
+<?php
+echo "<table border='1'>
+          <tr>
+            <td>Admin Name:</td>
+            <td> $Aname </td>
+          </tr>
+          <tr>
+            <td>Email:</td>
+            <td>$Aemail</td>
+          </tr>
+          <tr>
+        </table>";
+?>
 
 <h2>Create a new character type!</h2>
 
@@ -51,20 +86,10 @@
 <h2>Admin Recent Activity</h2>
 
 <?php
-//connect to DB
-$servername = "127.0.0.1:3306";
-$username = "root";
-$password = "Asd123890";
-$db = "thebestgameever";
-// Create connection
-$conn = new mysqli($servername, $username, $password, $db);
 
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
-$result = mysqli_query($conn, "SELECT A.name AS adminName, C.name AS charactertypeName, timestamp FROM charactertype C, admin A where adminId=idAdmin");
+$result = mysqli_query($conn, "SELECT A.name AS adminName, C.name AS charactertypeName, C.timestamp AS createTime 
+                               FROM charactertype C, admin A 
+                               WHERE adminId=idAdmin AND C.timestamp >= CURDATE()");
 echo "<table border='1'>
 <tr>
 <th>Admin Name</th>
@@ -72,20 +97,28 @@ echo "<table border='1'>
 <th>Character</th>
 <th>Time</th>
 </tr>";
+
 while($row = mysqli_fetch_array($result))
 {
     echo "<tr>";
     echo "<td>" . $row['adminName'] . "</td>";
     echo "<td>created</td>";
     echo "<td>" . $row['charactertypeName'] . "</td>";
-    echo "<td>" . $row['timestamp'] . "</td>";
+    echo "<td>" . $row['createTime'] . "</td>";
     echo "</tr>";
 }
-echo "</table>";
+echo "</table>"."<br>";
 echo "<br>
 <h2>Player Login Activity</h2>";
 
-$result = mysqli_query($conn, "SELECT name, tstart, tend, (tstart-tend) AS duration FROM loginstate, players where id=idPlayers");
+$result1 = mysqli_query($conn, "SELECT name, tstart, tend, TIMESTAMPDIFF(SECOND,tstart,tend) AS duration 
+                               FROM loginstate, players 
+                               WHERE id=idPlayers AND tstart >= CURDATE()");
+if (!$result1) {
+            printf("Error: %s\n", mysqli_error($conn));
+            exit();
+}
+
 echo "<table border='1'>
 <tr>
 <th>Player Name</th>
@@ -93,13 +126,13 @@ echo "<table border='1'>
 <th>Logout Time</th>
 <th>Duration</th>
 </tr>";
-while($row = mysqli_fetch_array($result))
+while($row1 = mysqli_fetch_array($result1))
 {
     echo "<tr>";
-    echo "<td>" . $row['name'] . "</td>";
-    echo "<td>" . $row['tstart'] . "</td>";
-    echo "<td>" . $row['tend'] . "</td>";
-    echo "<td>" . $row['duration'] . "</td>";
+    echo "<td>" . $row1['name'] . "</td>";
+    echo "<td>" . $row1['tstart'] . "</td>";
+    echo "<td>" . $row1['tend'] . "</td>";
+    echo "<td>" . $row1['duration'] . "</td>";
     echo "</tr>";
 }
 echo "</table>";
@@ -108,7 +141,7 @@ echo "</table>";
 mysqli_close($conn);
 ?>
 <br>
-<form action="php/typeLookUps.php" method="post" target='ctypelookupfr'>
+<form action="php/CTypeLookUp.php" method="post" target='ctypelookupfr'>
     <label for="Ctype"> Look up character type:</label>
     <input type="text" id="Ctype" name="Ctype">
     <input type="submit" value="Submit">

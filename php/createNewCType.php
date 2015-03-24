@@ -1,4 +1,6 @@
 <?php
+session_start();
+$id = $_SESSION['id'];
 
 $servername = "127.0.0.1:3306";
 $username = "root";
@@ -8,8 +10,7 @@ $db = "thebestgameever";
 $name = $_POST["Name"];
 $feature = $_POST["Feature"];
 $cost = $_POST["Cost"];
-$adminID = 12345;
-$timestamp =time();
+$timestamp = date('Y-m-d H:i:s');
 
 
 // Create connection
@@ -20,8 +21,8 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-$sql = "INSERT INTO charactertype(name, feature, cost, adminID, timestamp)
-        VALUES ('$name', '$feature', '$cost', '$adminID', '$timestamp')";
+$sql = "INSERT INTO charactertype(name, feature, cost, adminID, `timestamp`)
+        VALUES ('$name', '$feature', '$cost', '$id', '$timestamp')";
 
 if ($conn->query($sql) === TRUE) {
     echo "New record created successfully";
