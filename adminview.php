@@ -37,7 +37,7 @@ $admin_ = mysqli_fetch_array($admin);
 $Aname = $admin_['adminName'];
 $Aemail = $admin_['adminEmail'];
 ?>
-<font size="10" color="blue"> <?php echo "Hi " . $Aname . "! Welcome to The Best Game Ever!"; ?> </font>
+<font size="10" color="blue"> <?php echo "Hi " . $Aname . "! Welcome back!"; ?> </font>
 
 <?php
 echo "<table border='1'>
