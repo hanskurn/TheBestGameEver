@@ -1,11 +1,57 @@
-<DOCTYPE HTML>
+<!DOCTYPE HTML>
+
+<script language="Javascript">
+
+function validateForm(){
+
+	var uname = document.forms["CreateUser"]["name"].value;
+	
+	if(uname == null || uname == "") {
+		window.alert("Please fill in a valid username");
+		return false;
+		}
+	
+	var uemail = document.forms["CreateUser"]["email"].value;
+	//var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{1,4})+$/;
+	//!filter.test(uemail.value)
+	
+	if(uemail == null || uemail == "") {
+		window.alert("Please fill in a valid email");
+		return false;
+		}
+	
+	var upassword = document.forms["CreateUser"]["password"].value;
+	
+	if(upassword == null || upassword == "") {
+		window.alert("Please fill in a valid password");
+		return false;
+		}
+		
+	var charname = document.forms["CreateUser"]["charname"].value;
+	
+	if(charname == null || charname == "") {
+		window.alert("Please give your character a name");
+		return false;
+		}
+	
+	var chartype = document.forms["CreateUser"]["chartype"].value;
+	
+	if(chartype == null || chartype == "") {
+		window.alert("Please fill in a valid chartype");
+		return false;
+		}
+		
+}
+
+</script>
+
  <html>
   <head>
    <title>Create an Account</title>
   </head>
   <body>
   	<br>Please fill out your user information. <br><br>
-   <form action="createuser_s.php" method="post">
+   <form name="CreateUser" action="createuser_s.php" method="post" onSubmit="return validateForm();">
    	<table border="0">
    		<tr>
    			<td>Name: </td>
@@ -62,12 +108,13 @@
    			while($row = mysqli_fetch_array($result)){
    				$name = $row['name'];
    				$feature = $row['feature'];
-   				$cost = $row['cost'];
-   				$id = $row['id'];
-   				print '<tr><td align="center"><input type="radio" name="chartype" value="' . $id . '" ></td>
+   				$id[0] = $row['id'];
+   				$id[1] = $row['cost'];
+   				$id_string = implode(",", $id);
+   				print '<tr><td align="center"><input type="radio" name="chartype" value="' . $id_string . '" ></td>
    							<td> Name: ' . $name . '</td>
    							<td> Features: ' . $feature . '</td>
-   							<td> Cost: ' . $cost .  '</td></tr>';
+   							<td> Cost: ' . $id[1] .  '</td></tr>';
    				}
    			}
    	?>	

@@ -11,16 +11,25 @@
         if ($conn->connect_error) {
             die("Connection failed: " . $conn->connect_error);
         } 
-    echo "Connected successfully";
+    	echo "Connected successfully";
+        
+        $str_explode = explode(",", $_POST["chartype"]);
+        
+        $char_type = $str_explode[0];
+        $acct_balance = 500 - $str_explode[1];
+        
+        //echo "ID: $char_type";
+        //echo "Balance: $acct_balance";
+        
+        //exit(["for debugging"]);
         
         $name = $_POST["name"];
         $email = $_POST["email"];
         $password = $_POST["password"];
         $char_name = $_POST["charname"];
-        $char_type = $_POST["chartype"];
         
         $sql = "INSERT INTO TheBestGame.Players (name, email, password, coins)
-		VALUES ('$name', '$email', '$password', 500)";
+		VALUES ('$name', '$email', '$password', $acct_balance)";
 
 		if ($conn->query($sql) === TRUE) {
     		echo "New record created successfully";
