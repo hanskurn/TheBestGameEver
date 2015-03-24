@@ -1,9 +1,12 @@
 <DOCTYPE HTML>
 <html>
     <?php
+        session_start();
+        $_SESSION['error'] = "";
+        
         $servername = "localhost";
         $username = "root";
-        $password = "enthusiam";
+        $password = "DevonEdwards";
         
         // Create connection
         $conn = new mysqli($servername, $username, $password);
@@ -11,19 +14,22 @@
         // Check connection
         if ($conn->connect_error) {
             die("Connection failed: " . $conn->connect_error);
-        } 
-    echo "Connected successfully";
+        }
         ?>
  <head>
   <title></title>
  </head>
  <body>
-  This is the login page.
-  <form action="login_state.html" method="post">
+  Welcome to The Best Game Ever! <br><br>
+    <?php
+        echo $_SESSION['error'];
+    ?>
+<br><br> Please Sign In <br><br>
+  <form action="login_state.php" method="post">
       <table border="1" style="width:100%">
           <tr>
-              <td>Username: </td>
-              <td><input type="text" name="uname"></td>
+              <td>Email: </td>
+              <td><input type="text" name="email"></td>
           </tr>
           <tr>
               <td>Password:</td>

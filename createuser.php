@@ -40,8 +40,8 @@
    	<?php
         $servername = "localhost";
         $username = "root";
-        $password = "enthusiam";
-        $dbname = "TheBestGame";
+        $password = "DevonEdwards";
+        $dbname = "TheBestGameEver";
         
         // Create connection
         $conn = mysqli_connect($servername, $username, $password, $dbname);
@@ -53,8 +53,12 @@
     		die('Mysql connection error');
 		}
 		
-   		$query_chartypes = "SELECT id, name, feature, cost FROM TheBestGame.CharacterType";
+   		$query_chartypes = "SELECT id, name, feature, cost FROM TheBestGameEver.CharacterType";
    		$result = mysqli_query($conn, $query_chartypes);
+        if (!$result) {
+            printf("Error: %s\n", mysqli_error($conn));
+            exit();
+        }
    		if (!$result){
    			echo "No Data Avialible."; 
    			}
