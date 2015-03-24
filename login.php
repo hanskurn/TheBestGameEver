@@ -2,8 +2,9 @@
 <html>
     <?php
         session_start();
-        $_SESSION['error'] = "";
-        
+        if(empty($_SESSION['error'])){
+            $_SESSION['error'] = "";
+        }
         $servername = "localhost";
         $username = "root";
         $password = "DevonEdwards";
