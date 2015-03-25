@@ -2,16 +2,14 @@
     session_start();
     $id = $_SESSION['id'];
     
-    $servername = "localhost";
+    $servername = "127.0.0.1:3306";
     $username = "root";
-    $password = "DevonEdwards";
+    $password = "Asd123890";
     $db = "thebestgameever";
     
     $name = $_POST["Name"];
     $strength = $_POST["Strength"];
     $power = $_POST["Power"];
-    $adminid = $id;
-    $objectid = 30987;
     $timestamp = date('Y-m-d H:i:s');
     
     // Create connection
@@ -22,8 +20,8 @@
         die("Connection failed: " . $conn->connect_error);
     }
     
-    $sql = "INSERT INTO TheBestGameEver.createobject(TimeStamp, adminID, objectID, name, strength, power)
-    VALUES ('$timestamp', '$adminid', '$objectid', '$name', '$strength','$power')";
+    $sql = "INSERT INTO TheBestGameEver.createobject(`TimeStamp`, adminID, name, strength, power)
+    VALUES ('$timestamp', '$id', '$name', '$strength','$power')";
     
     if ($conn->query($sql) === TRUE) {
         echo "New record created successfully";

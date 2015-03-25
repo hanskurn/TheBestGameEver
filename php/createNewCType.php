@@ -2,15 +2,14 @@
     session_start();
     $adminId = $_SESSION['id'];
     
-    $servername = "localhost";
+    $servername = "127.0.0.1:3306";
     $username = "root";
-    $password = "DevonEdwards";
+    $password = "Asd123890";
     $db = "thebestgameever";
     
     $name = $_POST["Name"];
     $feature = $_POST["Feature"];
     $cost = $_POST["Cost"];
-    $id = 30987;
     $timestamp = date('Y-m-d H:i:s');
     
     
@@ -22,8 +21,8 @@
         die("Connection failed: " . $conn->connect_error);
     }
     
-    $sql = "INSERT INTO TheBestGameEver.CharacterType(id, name, feature, cost, adminId, timestamp)
-    VALUES ('$id', '$name', '$feature', '$cost', '$adminID', '$timestamp')";
+    $sql = "INSERT INTO TheBestGameEver.CharacterType(name, feature, cost, adminId, `timestamp`)
+    VALUES ('$name', '$feature', '$cost', '$adminId', '$timestamp')";
     
     if ($conn->query($sql) === TRUE) {
         echo "New record created successfully";
