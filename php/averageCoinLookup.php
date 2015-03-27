@@ -13,7 +13,6 @@
         die("Connection failed: " . $conn->connect_error);
     }
     
-    //TODO SET POSTED VARIABLES TO SOMETHING, MIN AND MAX
     $selectedOption = $_POST["minmaxform"];
     $sql = "CREATE VIEW Temp AS SELECT AVG(P.coins) as averageCoins, T.name as typeName
             FROM thebestgameever.`character` C, thebestgameever.charactertype T, thebestgameever.players P
