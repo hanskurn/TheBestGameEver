@@ -7,9 +7,9 @@
     $id = $_SESSION['id'];
     
     //connect to DB
-    $servername = "127.0.0.1:3306";
+    $servername = "localhost";
     $username = "root";
-    $password = "Asd123890";
+    $password = "DevonEdwards";
     $db = "thebestgameever";
     
     // Create connection
