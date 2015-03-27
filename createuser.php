@@ -49,32 +49,34 @@ function validateForm(){
 <title>Create an Account</title>
 </head>
 <body>
-<br>Please fill out your user information. <br><br>
+<br><h3>Please fill out your user information </h3><br>
 <form name="CreateUser" action="createuser_s.php" method="post" onSubmit="return validateForm();">
-<table border="0">
+<table>
 <tr>
-<td>Name: </td>
+<th>Name: </th>
+<th>Email: </th>
+<th>Password: </th>
+</tr>
+<tr>
 <td><input type="text" name="name"></td>
-</tr>
-<tr>
-<td>Email: </td>
 <td><input type="text" name="email"></td>
-</tr>
-<tr>
-<td>Password: </td>
 <td><input type="text" name="password"></td>
 </tr>
-<tr colspan="2">
-<td>
-Your account defaults to 500 coins.
-</td>
+<tr>
+<th>You begin with 500 coins</th>
+</tr>
+</tr>
+<tr>
+<th>use them wisely...</th>
 </tr>
 </table>
 <br>
-Now Create your character!<br><br>
-<table border = "0">
+<h4>Now Create your character!</h4>
+<table>
 <tr>
-<td>Character Name: </td>
+<th>Character Name: </th>
+</tr>
+<tr>
 <td><input type="text" name="charname"></td>
 </tr>
 <tr>

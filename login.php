@@ -24,7 +24,7 @@
 </head>
 <body>
 <br>
-<header><h1>Welcome to The Best Game Ever!</h1></header> <br>
+<h1>Welcome to The Best Game Ever!</h1> <br>
 <?php
     echo $_SESSION['error'];
     ?>
