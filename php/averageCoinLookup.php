@@ -15,11 +15,11 @@
     
     //TODO SET POSTED VARIABLES TO SOMETHING, MIN AND MAX
     $selectedOption = $_POST["minmaxform"];
-    $sql = "SELECT $selectedOption(A.averageCoins) as avgCoin, A.typeName as name
-            FROM (SELECT AVG(P.coins) as averageCoins, T.name as typeName
+    $sql = "CREATE VIEW Temp AS SELECT AVG(P.coins) as averageCoins, T.name as typeName
             FROM thebestgameever.`character` C, thebestgameever.charactertype T, thebestgameever.players P
-            WHERE P.idPlayers = C.playerId AND C.characterTypeID = T.id
-            GROUP BY T.id) AS A";
+            WHERE P.idPlayers = C.playerId AND C.characterTypeID = T.id GROUP BY T.id";
+    $result = mysqli_query($conn,$sql);
+    $sql = "SELECT Temp.averageCoins AS avgCoin, Temp.typeName AS name FROM Temp WHERE Temp.averageCoins = (SELECT $selectedOption(Temp.averageCoins) FROM Temp)";
     $result = mysqli_query($conn,$sql);
     $tuple = mysqli_fetch_array($result);
     if ($conn->query($sql) == TRUE) {
