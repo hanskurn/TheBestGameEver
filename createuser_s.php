@@ -1,8 +1,8 @@
 <?php
     $servername = "localhost";
     $username = "root";
-    $password = "DevonEdwards";
-    $dbname = "TheBestGameEver";
+    $password = "Hannahskurnik";
+    $dbname = "thebestgameever";
     
     // Create connection
     $conn = new mysqli($servername, $username, $password);
@@ -58,5 +58,5 @@
         echo "Error: " . $sql . "<br>" . $conn->error;
     }
     
-    header('Location: http://localhost/TheBestGameEver/login.php');
+    header('Location: http://localhost/login.php');
     ?>
