@@ -1,7 +1,7 @@
 <?php
     session_start();
     $id = $_SESSION['id'];
-    
+
     $servername = "127.0.0.1:3306";
     $username = "root";
     $password = "Asd123890";

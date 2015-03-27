@@ -9,7 +9,7 @@
     //connect to DB
     $servername = "127.0.0.1:3306";
     $username = "root";
-    $password = "Asd123890";
+    $password = "Hannahskurnik";
     $db = "thebestgameever";
     
     // Create connection
@@ -149,6 +149,20 @@
 </form>
 <br>
 <iframe name='objlookupfr' width='300' height='100'></iframe>
+<br>
+
+<h1>Find the Average coins per character type!</h1>
+<form id="minmaxform" action="php/averageCoinLookup.php" method="post" target="coinfr">
+<select name="minmaxform">
+    <option value="MIN" id="min">Minimum</option>
+    <option value="MAX" id="max">Maximum</option>
+</select>
+<input type="submit" value="Find">
+</form>
+<br>
+<iframe name="coinfr" width="300" height="300"></iframe>
+<br>
+<br>
 <br>
 
 </body>

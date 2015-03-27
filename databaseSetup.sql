@@ -172,4 +172,37 @@ REFERENCES `thebestgameever`.`Character` (`name`)
 ON DELETE NO ACTION
 ON UPDATE NO ACTION;
 ALTER TABLE `thebestgameever`.`Character` 
-DROP COLUMN `ID`;
+
+
+ALTER TABLE `TheBestGameEver`.`hasObject` 
+DROP FOREIGN KEY `hasObjectId`;
+ALTER TABLE `TheBestGameEver`.`CreateObject` 
+CHANGE COLUMN `name` `name` VARCHAR(50) NOT NULL ,
+CHANGE COLUMN `strength` `strength` INT(11) NOT NULL ,
+CHANGE COLUMN `power` `power` VARCHAR(50) NOT NULL ;
+ALTER TABLE `TheBestGameEver`.`CreateObject` 
+CHANGE COLUMN `objectID` `objectID` INT(11) NOT NULL AUTO_INCREMENT ;
+ALTER TABLE `TheBestGameEver`.`hasObject` 
+ADD CONSTRAINT `objectID`
+FOREIGN KEY (`objectID`)
+REFERENCES `TheBestGameEver`.`CreateObject` (`objectID`)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION;
+UNLOCK TABLES;
+
+
+ALTER TABLE `TheBestGameEver`.`CharacterType` 
+CHANGE COLUMN `timestamp` `timestamp` DATETIME NULL DEFAULT NULL ;
+
+ALTER TABLE `TheBestGameEver`.`hasObject` 
+DROP FOREIGN KEY `objectID`;
+
+ALTER TABLE `TheBestGameEver`.`CreateObject` 
+CHANGE COLUMN `TimeStamp` `TimeStamp` DATETIME NOT NULL ;
+
+ALTER TABLE `TheBestGameEver`.`hasObject` 
+ADD CONSTRAINT `objectID`
+  FOREIGN KEY (`objectID`)
+  REFERENCES `TheBestGameEver`.`CreateObject` (`adminID`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION;
