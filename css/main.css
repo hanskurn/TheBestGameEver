@@ -171,6 +171,11 @@ body {
     -webkit-text-size-adjust: 100%;
 }
 
+iframe
+{
+    background-color: white;
+}
+
 /* 2. Typography
  Vertical rhythm with leading derived from 6
  --------------------------------------------------------------------- */

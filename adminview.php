@@ -39,6 +39,13 @@
 </head>
 <link rel="stylesheet" href="css/main.css" type="text/css">
 <body>
+<form action="adminLogout.php" method="post">
+<table align="right">
+<tr>
+<td colspan="2"><input type="submit" value="Logout"></td>
+</tr>
+</table>
+</form>
 <br>
 <h1><?php echo "Welcome back " . $row['name'] . "!"; ?> </h1>
 <h3><?php echo "Email: " . $row['email']; ?></h3>
