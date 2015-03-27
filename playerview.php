@@ -31,10 +31,10 @@
     }
     $rowPlayer = mysqli_fetch_array($resultPlayer);
     
-    $selectCharacterPlayer = "SELECT C.name AS CharacterName, C.health AS Health, C.age AS Age, P.idPlayers AS playerId, P.name AS playerName
-    FROM TheBestGameEver.Character C, TheBestGameEver.Players P
+    $selectCharacterPlayer = "SELECT C.name AS CharacterName, C.health AS Health, C.age AS Age, P.idPlayers AS playerId, P.name AS playerName, T.name as typeName
+    FROM TheBestGameEver.Character C, TheBestGameEver.Players P, TheBestGameEver.CharacterType T
     WHERE P.idPlayers = '$id'
-    AND C.playerId = P.idPlayers";
+    AND C.playerId = P.idPlayers AND C.characterTypeID = T.id";
     $result = mysqli_query($conn, $selectCharacterPlayer);
     if (!$result) {
         printf("Error: %s\n", mysqli_error($conn));
@@ -44,31 +44,32 @@
     
     ?>
 
-<?php echo "Hi " . $rowPlayer['playerName'] . "! Welcome to The Best Game Ever!"; ?>
 <form action="logout.php" method="post">
-<table border="1">
+<table align="right">
 <tr>
 <td colspan="2"><input type="submit" value="Logout"></td>
 </tr>
 </table>
+</form>
+<h1><?php echo "Hi " . $rowPlayer['playerName'] . "! Welcome to The Best Game Ever!"; ?></h1>
 <br>
 <br>
 
-<?php echo "Character Information:"; ?>
-<br>
-
+<h4><?php echo "Character Information:"; ?></h4>
 <?php
     echo "<table border='1'>
     <tr>
     <th>Character Name</th>
     <th>Health</th>
     <th>Age</th>
+    <th>Character Type</th>
     </tr>";
     
     echo "<tr>";
     echo "<td>" . $row['CharacterName'] . "</td>";
     echo "<td>" . $row['Health'] . "</td>";
     echo "<td>" . $row['Age'] . "</td>";
+    echo "<td>" . $row['typeName'] . "</td>";
     echo "</tr>";
     
     echo "</table>";
@@ -89,9 +90,7 @@
     $row2 = mysqli_fetch_array($result2);
     ?>
 
-<?php echo "Objects Owned:"; ?> 
-<br>
-
+<h4><?php echo "Objects Owned:"; ?></h4>
 <?php
     echo "<table border='1'>
     <tr>
@@ -113,9 +112,7 @@
 <br>
 <br>
 
-<?php echo "Settings:"; ?> 
-<br>
-
+<h4><?php echo "Settings:"; ?> </h4>
 <?php
     $coins = $rowPlayer['Coins'];
     $email = $rowPlayer['email'];

@@ -85,7 +85,7 @@ Select a Character Type:
 <?php
     $servername = "localhost";
     $username = "root";
-    $password = "Hannahskurnik";
+    $password = "DevonEdwards";
     $dbname = "thebestgameever";
     
     // Create connection

@@ -58,13 +58,6 @@
     padding: 0;
 }
 
-/* ------------------------------------------------------------------
- /* c. Reset
- Adapted from:
- Normalize.css - https://github.com/necolas/normalize.css/
- HTML5 Doctor Reset - html5doctor.com/html-5-reset-stylesheet/
- /* ------------------------------------------------------------------ */
-
 html, body, div, span, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 abbr, address, cite, code,
@@ -181,9 +174,20 @@ body {
 /* 2. Typography
  Vertical rhythm with leading derived from 6
  --------------------------------------------------------------------- */
+table, th, td {
+    border-collapse: collapse;
+}
+th, td {
+    padding: 5px;
+}
+th {
+    text-align: left;
+}
+
+
 
 h1, h2, h3, h4, h5, h6 {
-    color: #313131;
+    color: #575757;
     font-family: 'montserrat-bold', sans-serif;
     font-weight: normal;
 }
