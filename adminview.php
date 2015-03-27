@@ -32,6 +32,7 @@
     
     ?>
 </head>
+<link rel="stylesheet" href="css/main.css" type="text/css">
 <body>
 <table>
 <tr>
@@ -149,6 +150,20 @@
 </form>
 <br>
 <iframe name='objlookupfr' width='300' height='100'></iframe>
+<br>
+
+<h1>Find the Average coins per character type!</h1>
+<form id="minmaxform" action="php/averageCoinLookup.php" method="post" target='coinfr'>
+<select name="minmaxform">
+<option value="MIN" id="min">Minimum</option>
+<option value="MAX" id="max">Maximum</option>
+</select>
+<input type="submit" value="Find">
+</form>
+<br>
+<iframe name='coinfr' width='300' height='300'></iframe>
+<br>
+<br>
 <br>
 
 </body>

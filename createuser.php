@@ -45,6 +45,7 @@ function validateForm(){
 
 <html>
 <head>
+<link rel="stylesheet" href="css/main.css" type="text/css">
 <title>Create an Account</title>
 </head>
 <body>
