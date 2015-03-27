@@ -2,9 +2,11 @@
     session_start();
     $id = $_SESSION['id'];
 
-    $servername = "127.0.0.1:3306";
+    
+    $servername = "localhost";
+
     $username = "root";
-    $password = "Asd123890";
+    $password = "DevonEdwards";
     $db = "thebestgameever";
     
     $name = $_POST["Name"];

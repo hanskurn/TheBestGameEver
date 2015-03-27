@@ -1,6 +1,7 @@
 <DOCTYPE HTML>
 <html>
 <head>
+<link rel="stylesheet" href="css/main.css" type="text/css">
 <title>Player View</title>
 </head>
 <body>
@@ -43,7 +44,7 @@
     
     ?>
 
-<font size="10" color="blue"> <?php echo "Hi " . $rowPlayer['playerName'] . "! Welcome to The Best Game Ever!"; ?> </font>
+<?php echo "Hi " . $rowPlayer['playerName'] . "! Welcome to The Best Game Ever!"; ?>
 <form action="logout.php" method="post">
 <table border="1">
 <tr>
@@ -53,7 +54,7 @@
 <br>
 <br>
 
-<font size="6" color="blue"> <?php echo "Character Information:"; ?> </font>
+<?php echo "Character Information:"; ?>
 <br>
 
 <?php
@@ -112,7 +113,7 @@
 <br>
 <br>
 
-<font size="6" color="blue"> <?php echo "Settings:"; ?> </font>
+<?php echo "Settings:"; ?> 
 <br>
 
 <?php

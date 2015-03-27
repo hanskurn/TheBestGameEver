@@ -7,9 +7,11 @@
     $id = $_SESSION['id'];
     
     //connect to DB
-    $servername = "127.0.0.1:3306";
+    $servername = "localhost";
     $username = "root";
+
     $password = "Hannahskurnik";
+
     $db = "thebestgameever";
     
     // Create connection
@@ -32,6 +34,7 @@
     
     ?>
 </head>
+<link rel="stylesheet" href="css/main.css" type="text/css">
 <body>
 <table>
 <tr>
@@ -152,15 +155,26 @@
 <br>
 
 <h1>Find the Average coins per character type!</h1>
+<<<<<<< HEAD
 <form id="minmaxform" action="php/averageCoinLookup.php" method="post" target="coinfr">
 <select name="minmaxform">
     <option value="MIN" id="min">Minimum</option>
     <option value="MAX" id="max">Maximum</option>
+=======
+<form id="minmaxform" action="php/averageCoinLookup.php" method="post" target='coinfr'>
+<select name="minmaxform">
+<option value="MIN" id="min">Minimum</option>
+<option value="MAX" id="max">Maximum</option>
+>>>>>>> 09442be2f0e22af32194db32574d794bb3480085
 </select>
 <input type="submit" value="Find">
 </form>
 <br>
+<<<<<<< HEAD
 <iframe name="coinfr" width="300" height="300"></iframe>
+=======
+<iframe name='coinfr' width='300' height='300'></iframe>
+>>>>>>> 09442be2f0e22af32194db32574d794bb3480085
 <br>
 <br>
 <br>

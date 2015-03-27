@@ -3,7 +3,6 @@
 <script language="Javascript">
 
 function validateForm(){
-    
     var uname = document.forms["CreateUser"]["name"].value;
     
     if(uname == null || uname == "") {
@@ -12,10 +11,10 @@ function validateForm(){
     }
     
     var uemail = document.forms["CreateUser"]["email"].value;
-    //var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{1,4})+$/;
-    //!filter.test(uemail.value)
+    var at = uemail.indexOf("@");
+    var dot = uemail.indexOf(".");
     
-    if(uemail == null || uemail == "") {
+    if(uemail == null || uemail == "" || at < 1 || dot < 3 || at > dot) {
         window.alert("Please fill in a valid email");
         return false;
     }
@@ -40,13 +39,13 @@ function validateForm(){
         window.alert("Please fill in a valid chartype");
         return false;
     }
-    
 }
 
 </script>
 
 <html>
 <head>
+<link rel="stylesheet" href="css/main.css" type="text/css">
 <title>Create an Account</title>
 </head>
 <body>
