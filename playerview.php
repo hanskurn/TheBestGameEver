@@ -89,7 +89,7 @@
     $row2 = mysqli_fetch_array($result2);
     ?>
 
-<font size="6" color="blue"> <?php echo "Objects Owned:"; ?> </font>
+<?php echo "Objects Owned:"; ?> 
 <br>
 
 <?php
