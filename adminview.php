@@ -9,9 +9,7 @@
     //connect to DB
     $servername = "localhost";
     $username = "root";
-
-    $password = "Hannahskurnik";
-
+    $password = "DevonEdwards";
     $db = "thebestgameever";
 
     // Create connection
@@ -41,45 +39,59 @@
 </head>
 <link rel="stylesheet" href="css/main.css" type="text/css">
 <body>
-<table>
-    <tr>
-        <td>
-            <?php echo "Welcome back " . $row['name'] . "!"; ?>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <?php echo "Email: " . $row['email']; ?>
-        </td>
-    </tr>
+<form action="adminLogout.php" method="post">
+<table align="right">
+<tr>
+<td colspan="2"><input type="submit" value="Logout"></td>
+</tr>
 </table>
-
-<h2>Create a new character type!</h2>
+</form>
+<br>
+<h1><?php echo "Welcome back " . $row['name'] . "!"; ?> </h1>
+<h3><?php echo "Email: " . $row['email']; ?></h3>
+<br><br>
+<h4>Create a new character type!</h4>
 
 <form action="php/createNewCType.php" method="post" target='ctformresponse'>
-    <label for="Name">Character Name:</label>
-    <input type="text" id="Name" name="Name">
-    <label for="Feature"> Feature:</label>
-    <input type="text" id="Feature" name="Feature">
-    <label for="Cost"> Cost:</label>
-    <input type="text" id="Cost" name="Cost">
-    <input type="submit" value="Submit">
+<table>
+<tr>
+<th> Character Name:</th>
+<th> Feature:</th>
+<th> Cost:</th>
+</tr>
+<tr>
+<td> <input type="text" id="Name" name="Name"></td>
+<td> <input type="text" id="Feature" name="Feature"></td>
+<td> <input type="text" id="Cost" name="Cost"></td>
+</tr>
+<tr>
+<td> <input type="submit" value="Submit"></td>
+</tr>
+</table>
 </form>
 <br>
 <iframe name='ctformresponse' width='300' height='25'></iframe>
 <br>
 
 
-<h2>Create a new object!</h2>
+<h4>Create a new object!</h4>
 
 <form action="php/createNewObject.php" method="post" target='obformresponse'>
-    <label for="Name"> Object Name:</label>
-    <input type="text" id="Name" name="Name">
-    <label for="Strength"> Strength:</label>
-    <input type="text" id="Strength" name="Strength">
-    <label for="Power"> Power:</label>
-    <input type="text" id="Power" name="Power">
-    <input type="submit" value="Submit">
+<table>
+<tr>
+<th> Object Name:</th>
+<th> Strength:</th>
+<th> Power:</th>
+</tr>
+<tr>
+<td> <input type="text" id="Name" name="Name"></td>
+<td> <input type="text" id="Strength" name="Strength"></td>
+<td> <input type="text" id="Power" name="Power"></td>
+</tr>
+<tr>
+<td> <input type="submit" value="Submit"></td>
+</tr>
+</table>
 </form>
 <br>
 <iframe name='obformresponse' width='300' height='25'></iframe>
@@ -113,7 +125,8 @@ while ($row = mysqli_fetch_array($result)) {
 }
 echo "</table>";
 echo "<br>
-    <h2>Player Login Activity</h2>";
+
+<h4>Player Login Activity</h4>";
 
 $result = mysqli_query($conn, "SELECT name, tstart, tend, TIMESTAMPDIFF(SECOND,tstart,tend) AS duration
                                    FROM loginstate, players 
@@ -136,16 +149,25 @@ while ($row = mysqli_fetch_array($result)) {
 echo "</table>";
 
 
+
 mysqli_close($conn);
 ?>
 
-<h2>Delete Player</h2>
+<h4>Delete Player</h4>
 <form action="php/deletePlayer.php" method="post" target='deleteplayerfr'>
-    <label for="playerName">Name</label>
-    <input type="text" id="playerName" name="playerName">
-    <label for="playerID">ID</label>
-    <input type="text" id="playerID" name="playerID">
-    <input type="submit" value="Submit">
+<table>
+<tr>
+<th> Name:</th>
+<th> ID:</th>
+</tr>
+<tr>
+<td> <input type="text" id="playerName" name="playerName"></td>
+<td> <input type="text" id="playerID" name="playerID"></td>
+</tr>
+<tr>
+<td> <input type="submit" value="Submit"></td>
+</tr>
+</table>
 </form>
 <br>
 <iframe name='deleteplayerfr' width='300' height='100'></iframe>
@@ -173,7 +195,7 @@ mysqli_close($conn);
 <iframe name='objlookupfr' width='300' height='100'></iframe>
 <br>
 
-<h1>Find the Average coins per character type!</h1>
+<h4>Find the average coins of players who have the max/min average coins per character type</h4>
 
         <form id="minmaxform" action="php/averageCoinLookup.php" method="post" target='coinfr'>
             <select name="minmaxform">

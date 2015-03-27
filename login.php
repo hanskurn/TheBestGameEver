@@ -7,7 +7,7 @@
     }
     $servername = "localhost";
     $username = "root";
-    $password = "Hannahskurnik";
+    $password = "DevonEdwards";
     $dbname = "thebestgameever";
     
     // Create connection
@@ -20,22 +20,23 @@
     ?>
 <head>
 <link rel="stylesheet" href="css/main.css" type="text/css">
-<title></title>
+<title>Login</title>
 </head>
 <body>
-Welcome to The Best Game Ever! <br><br>
+<br>
+<h1>Welcome to The Best Game Ever!</h1> <br>
 <?php
     echo $_SESSION['error'];
     ?>
-<br><br> Please Sign In <br><br>
+<br><h4> Please Sign In </h4>
 <form action="login_state.php" method="post">
-<table border="1" style="width:100%">
+<table>
 <tr>
-<td>Email: </td>
-<td><input type="text" name="email"></td>
+<th>Email: </th>
+<th>Password:</th>
 </tr>
 <tr>
-<td>Password:</td>
+<td><input type="text" name="email"></td>
 <td><input type="text" name="password"></td>
 </tr>
 <tr>
