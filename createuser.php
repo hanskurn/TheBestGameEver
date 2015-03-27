@@ -85,8 +85,8 @@ Select a Character Type:
 <?php
     $servername = "localhost";
     $username = "root";
-    $password = "DevonEdwards";
-    $dbname = "TheBestGameEver";
+    $password = "Hannahskurnik";
+    $dbname = "thebestgameever";
     
     // Create connection
     $conn = mysqli_connect($servername, $username, $password, $dbname);

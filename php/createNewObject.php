@@ -1,8 +1,10 @@
 <?php
     session_start();
     $id = $_SESSION['id'];
+
     
     $servername = "localhost";
+
     $username = "root";
     $password = "DevonEdwards";
     $db = "thebestgameever";

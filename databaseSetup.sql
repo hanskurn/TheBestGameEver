@@ -1,3 +1,7 @@
+DROP DATABASE `TheBestGameEver`;
+
+CREATE SCHEMA `TheBestGameEver` ;
+
 CREATE TABLE `TheBestGameEver`.`LoginState` (
 `tstart` DATETIME NOT NULL,
 `tend` DATETIME NOT NULL,
@@ -104,72 +108,108 @@ ON DELETE CASCADE
 ON UPDATE CASCADE;
 
 
-ALTER TABLE `thebestgameever`.`Character` 
+ALTER TABLE `TheBestGameEver`.`Character` 
 ADD COLUMN `playerId` INT NOT NULL AFTER `ID`;
-ALTER TABLE `thebestgameever`.`Character` 
+ALTER TABLE `TheBestGameEver`.`Character` 
 ADD INDEX `playerId_idx` (`playerId` ASC);
-ALTER TABLE `thebestgameever`.`Character` 
+ALTER TABLE `TheBestGameEver`.`Character` 
 ADD CONSTRAINT `playerId`
 FOREIGN KEY (`playerId`)
-REFERENCES `thebestgameever`.`Players` (`idPlayers`)
+REFERENCES `TheBestGameEver`.`Players` (`idPlayers`)
 ON DELETE CASCADE
 ON UPDATE CASCADE;
-ALTER TABLE `thebestgameever`.`CreateObject` 
+ALTER TABLE `TheBestGameEver`.`CreateObject` 
 DROP FOREIGN KEY `createId`,
 DROP FOREIGN KEY `idHasObject`;
-ALTER TABLE `thebestgameever`.`CreateObject` 
+ALTER TABLE `TheBestGameEver`.`CreateObject` 
 CHANGE COLUMN `ID` `adminID` INT(11) NOT NULL ,
 CHANGE COLUMN `OID` `objectID` INT(11) NULL DEFAULT NULL ;
-ALTER TABLE `thebestgameever`.`CreateObject` 
+ALTER TABLE `TheBestGameEver`.`CreateObject` 
 ADD CONSTRAINT `createId`
 FOREIGN KEY (`adminID`)
-REFERENCES `thebestgameever`.`Admin` (`idAdmin`)
+REFERENCES `TheBestGameEver`.`Admin` (`idAdmin`)
 ON DELETE CASCADE
 ON UPDATE CASCADE,
 ADD CONSTRAINT `idHasObject`
 FOREIGN KEY (`objectID`)
-REFERENCES `thebestgameever`.`HasObject` (`idHasObject`)
+REFERENCES `TheBestGameEver`.`HasObject` (`idHasObject`)
 ON DELETE CASCADE
 ON UPDATE CASCADE;
-ALTER TABLE `thebestgameever`.`CreateObject` 
+ALTER TABLE `TheBestGameEver`.`CreateObject` 
 ADD COLUMN `name` VARCHAR(50) NULL AFTER `objectID`,
 ADD COLUMN `strength` INT NULL AFTER `name`,
 ADD COLUMN `power` VARCHAR(50) NULL AFTER `strength`;
-ALTER TABLE `thebestgameever`.`CreateObject` 
+ALTER TABLE `TheBestGameEver`.`CreateObject` 
 DROP FOREIGN KEY `idHasObject`;
-DROP TABLE `thebestgameever`.`hasObject`;
-ALTER TABLE `thebestgameever`.`Character` 
+DROP TABLE `TheBestGameEver`.`hasObject`;
+ALTER TABLE `TheBestGameEver`.`Character` 
 DROP FOREIGN KEY `characterTypeId`;
-ALTER TABLE `thebestgameever`.`Character` 
+ALTER TABLE `TheBestGameEver`.`Character` 
 CHANGE COLUMN `CTID` `characterTypeID` INT(11) NULL DEFAULT NULL ;
-ALTER TABLE `thebestgameever`.`Character` 
+ALTER TABLE `TheBestGameEver`.`Character` 
 ADD CONSTRAINT `characterTypeId`
 FOREIGN KEY (`characterTypeID`)
-REFERENCES `thebestgameever`.`CharacterType` (`id`)
+REFERENCES `TheBestGameEver`.`CharacterType` (`id`)
 ON DELETE CASCADE
 ON UPDATE CASCADE;
-ALTER TABLE `thebestgameever`.`Character` 
+ALTER TABLE `TheBestGameEver`.`Character` 
 DROP FOREIGN KEY `ID_players`;
-ALTER TABLE `thebestgameever`.`Character` 
+ALTER TABLE `TheBestGameEver`.`Character` 
 DROP INDEX `ID_players_idx` ;
-CREATE TABLE `thebestgameever`.`hasObject` (
+CREATE TABLE `TheBestGameEver`.`hasObject` (
 `objectID` INT NOT NULL,
 `characterID` INT NULL,
 PRIMARY KEY (`objectID`));
-ALTER TABLE `thebestgameever`.`hasObject` 
+ALTER TABLE `TheBestGameEver`.`hasObject` 
 ADD CONSTRAINT `hasObjectId`
 FOREIGN KEY (`objectID`)
-REFERENCES `thebestgameever`.`CreateObject` (`objectID`)
+REFERENCES `TheBestGameEver`.`CreateObject` (`objectID`)
 ON DELETE CASCADE
 ON UPDATE CASCADE;
-ALTER TABLE `thebestgameever`.`hasObject` 
+ALTER TABLE `TheBestGameEver`.`hasObject` 
 CHANGE COLUMN `characterID` `characterName` VARCHAR(50) NULL DEFAULT NULL ,
 ADD UNIQUE INDEX `characterName_UNIQUE` (`characterName` ASC);
-ALTER TABLE `thebestgameever`.`hasObject` 
+ALTER TABLE `TheBestGameEver`.`hasObject` 
 ADD CONSTRAINT `hasCharacterName`
 FOREIGN KEY (`characterName`)
-REFERENCES `thebestgameever`.`Character` (`name`)
+REFERENCES `TheBestGameEver`.`Character` (`name`)
 ON DELETE NO ACTION
 ON UPDATE NO ACTION;
-ALTER TABLE `thebestgameever`.`Character` 
-DROP COLUMN `ID`;
+ALTER TABLE `TheBestGameEver`.`Character` 
+
+
+ALTER TABLE `TheBestGameEver`.`hasObject` 
+DROP FOREIGN KEY `hasObjectId`;
+ALTER TABLE `TheBestGameEver`.`CreateObject` 
+CHANGE COLUMN `name` `name` VARCHAR(50) NOT NULL ,
+CHANGE COLUMN `strength` `strength` INT(11) NOT NULL ,
+CHANGE COLUMN `power` `power` VARCHAR(50) NOT NULL ;
+ALTER TABLE `TheBestGameEver`.`CreateObject` 
+CHANGE COLUMN `objectID` `objectID` INT(11) NOT NULL AUTO_INCREMENT ;
+ALTER TABLE `TheBestGameEver`.`hasObject` 
+ADD CONSTRAINT `objectID`
+FOREIGN KEY (`objectID`)
+REFERENCES `TheBestGameEver`.`CreateObject` (`objectID`)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION;
+UNLOCK TABLES;
+
+
+ALTER TABLE `TheBestGameEver`.`CharacterType` 
+CHANGE COLUMN `timestamp` `timestamp` DATETIME NULL DEFAULT NULL ;
+
+ALTER TABLE `TheBestGameEver`.`hasObject` 
+DROP FOREIGN KEY `objectID`;
+
+ALTER TABLE `TheBestGameEver`.`CreateObject` 
+CHANGE COLUMN `TimeStamp` `TimeStamp` DATETIME NOT NULL ;
+
+ALTER TABLE `TheBestGameEver`.`hasObject` 
+ADD CONSTRAINT `objectID`
+  FOREIGN KEY (`objectID`)
+  REFERENCES `TheBestGameEver`.`CreateObject` (`adminID`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION;
+
+ALTER TABLE `TheBestGameEver`.`CharacterType`
+ADD CHECK (`cost`<500)
