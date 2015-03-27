@@ -133,29 +133,7 @@ while ($row = mysqli_fetch_array($result)) {
     echo "<td>" . $row['duration'] . "</td>";
     echo "</tr>";
 }
-echo "</table>
-
-<br>
-<br>
-<h1>Players</h1>";
-$result0 = mysqli_query($conn, "SELECT idplayers AS id, name, coins FROM TheBestGameEver.players");
-
-echo "<table>
-
-<tr>
-<th>ID</th>
-<th>Name</th>
-<th>Coins</th>
-</tr>";
-while($row = mysqli_fetch_array($result0)){
-    echo "<tr>";
-    echo "<td>" . $row['id'] . "</td>";
-    echo "<td>" . $row['name'] . "</td>";
-    echo "<td>" . $row['coins'] . "</td>";
-    echo "<td><button type='button' id='deleteButton' onClick='removePlayer(event)'>Remove</button></td>";
-    echo "</tr>";
-}
-echo"</table>";
+echo "</table>";
 
 
 mysqli_close($conn);
