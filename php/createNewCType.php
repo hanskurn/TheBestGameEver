@@ -20,14 +20,18 @@
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
-    
-    $sql = "INSERT INTO TheBestGameEver.CharacterType(name, feature, cost, adminId, `timestamp`)
-    VALUES ('$name', '$feature', '$cost', '$adminId', '$timestamp')";
-    
-    if ($conn->query($sql) === TRUE) {
-        echo "New record created successfully";
-    } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
+    if($cost < 501){// check constraint (check not supported in our version of sql)
+        $sql = "INSERT INTO TheBestGameEver.CharacterType(name, feature, cost, adminId, `timestamp`)
+        VALUES ('$name', '$feature', '$cost', '$adminId', '$timestamp')";
+        if ($conn->query($sql) === TRUE) {
+            echo "New record created successfully";
+        }
+        else {
+            echo "Error: " . $sql . "<br>" . $conn->error;
+        }
+    }
+    else{
+        echo "Please choose a value for cost that is less than 500";
     }
     
     ?>
