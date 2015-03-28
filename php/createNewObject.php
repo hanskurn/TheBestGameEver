@@ -25,7 +25,7 @@
     $sql = "INSERT INTO TheBestGameEver.createobject(`TimeStamp`, adminID, name, strength, power)
     VALUES ('$timestamp', '$id', '$name', '$strength','$power')";
     
-    if ($conn->query($sql) === TRUE) {
+    if ($conn->query($sql) == TRUE) {
         echo "New record created successfully";
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;

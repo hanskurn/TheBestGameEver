@@ -112,14 +112,13 @@
 <h4><?php echo "See who else owns all your objects!"; ?></h4>
 <?php
     $divisionQuery = "SELECT P3.name as playerName, P3.coins as playerCoins
-        FROM thebestgameever.players P3, thebestgameever.`character` C3
-        WHERE C3.playerId = P3.idPlayers
-        AND P3.idPlayers != '$id'
-        AND NOT EXISTS (SELECT * FROM thebestgameever.hasObject O2 , thebestgameever.`character` C2
-                        WHERE O2.characterName = C2.name AND C2.playerId = '$id'
-                        AND NOT EXISTS
-                        (SELECT * FROM thebestgameever.hasObject O, thebestgameever.`Character` C
-                         WHERE C.playerId = P3.idPlayers AND C.name = O.characterName))";
+    FROM thebestgameever.players P3, thebestgameever.`character` C3
+    WHERE C3.playerId = P3.idPlayers
+    AND P3.idPlayers != '$id'
+    AND NOT EXISTS (SELECT * FROM thebestgameever.hasObject O2 , thebestgameever.`character` C2
+                    WHERE O2.characterName = C2.name AND C2.playerId = '$id'
+                    AND NOT EXISTS
+                    (SELECT * FROM thebestgameever.hasObject O WHERE O.objectID = O2.objectID AND O.characterName = C3.name))";
     
     $divisionresult = mysqli_query($conn, $divisionQuery);
     if (!$divisionresult) {
@@ -168,8 +167,9 @@ if (mysqli_connect_errno()){
     die('Mysql connection error');
 }
 
-$query_chartypes = "SELECT objectID, name, strength, power FROM TheBestGameEver.CreateObject
-                    WHERE objectID NOT IN (SELECT H.objectID FROM TheBestGameEver.hasObject H)";
+    $query_chartypes = "SELECT O.objectID as objectID, O.name as name, O.strength as strength, O.power as power
+    FROM TheBestGameEver.CreateObject O, TheBestGameEver.`Character` C
+    WHERE '$id' = C.playerId AND NOT EXISTS (SELECT H.objectID, H.characterName FROM TheBestGameEver.hasObject H WHERE H.objectID = O.objectID AND H.characterName = C.name)";
 $result = mysqli_query($conn, $query_chartypes);
 
 if (!$result){

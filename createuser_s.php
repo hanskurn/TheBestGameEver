@@ -26,11 +26,6 @@ function emailnotavaible()
     $char_type = $str_explode[0];
     $acct_balance = 500 - $str_explode[1];
     
-    //echo "ID: $char_type";
-    //echo "Balance: $acct_balance";
-    
-    //exit(["for debugging"]);
-    
     $name = $_POST["name"];
     $email = $_POST["email"];
     $password = $_POST["password"];
@@ -56,7 +51,7 @@ function emailnotavaible()
         $Update_Character ="INSERT INTO TheBestGameEver.Character (name, health, age, characterTypeID, playerID)
         VALUES ('$char_name', 10, 0, $char_type, $id)";
         
-        if ($conn->query($Update_Character) === TRUE) {
+        if ($conn->query($Update_Character) == TRUE) {
             echo "New character created successfully";
         } else {
             echo "Error: " . $sql . "<br>" . $conn->error;

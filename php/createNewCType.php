@@ -23,7 +23,7 @@
     if($cost < 501){// check constraint (check not supported in our version of sql)
         $sql = "INSERT INTO TheBestGameEver.CharacterType(name, feature, cost, adminId, `timestamp`)
         VALUES ('$name', '$feature', '$cost', '$adminId', '$timestamp')";
-        if ($conn->query($sql) === TRUE) {
+        if ($conn->query($sql) == TRUE) {
             echo "New record created successfully";
         }
         else {

@@ -14,7 +14,6 @@
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
-    //echo "Connected successfully";
 
     $objectid = $_POST["objtype"];
 
@@ -27,8 +26,6 @@ if (!$result) {
     exit();
 }
 $charactername = mysqli_fetch_array($result);
-
-
 
     $sql = "INSERT INTO TheBestGameEver.hasObject (objectID, characterName)
     VALUES ('$objectid', '$charactername[0]')";

@@ -21,7 +21,7 @@
     
     $sql = "INSERT INTO TheBestGameEver.LoginState (tstart, tend, id)
     VALUES ('$start', '$end', '$id')";
-    if ($conn->query($sql) === TRUE) {
+    if ($conn->query($sql) == TRUE) {
         echo "New record created successfully";
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
