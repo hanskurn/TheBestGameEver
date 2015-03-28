@@ -7,7 +7,7 @@
     }
     $servername = "localhost";
     $username = "root";
-    $password = "DevonEdwards";
+    $password = "Devonedwards";
     $dbname = "thebestgameever";
     
     // Create connection
@@ -37,7 +37,7 @@
 </tr>
 <tr>
 <td><input type="text" name="email"></td>
-<td><input type="text" name="password"></td>
+<td><input type="password" name="password"></td>
 </tr>
 <tr>
 <td colspan="2"><input type="submit" value="Login"></td>

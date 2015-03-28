@@ -9,7 +9,7 @@
     //connect to DB
     $servername = "localhost";
     $username = "root";
-    $password = "DevonEdwards";
+    $password = "Devonedwards";
     $db = "thebestgameever";
 
     // Create connection
@@ -146,6 +146,7 @@ while ($row = mysqli_fetch_array($result)) {
     echo "<td>" . $row['duration'] . "</td>";
     echo "</tr>";
 }
+
 echo "</table>
 
 <br>
@@ -168,6 +169,7 @@ while($row = mysqli_fetch_array($result0)){
     echo "</tr>";
 }
 echo"</table>";
+
 
 
 mysqli_close($conn);
