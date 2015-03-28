@@ -8,7 +8,7 @@
 <?php
     $servername = "localhost";
     $username = "root";
-    $password = "DevonEdwards";
+    $password = "Devonedwards";
     $dbname = "TheBestGameEver";
     
     // Create connection
@@ -62,7 +62,7 @@
         session_start();
         $_SESSION['id'] = $id;
         $_SESSION['error'] = "";
-        header('Location: http://localhost/TheBestGameEver/adminview.php');
+        header('Location: http://localhost/adminview.php');
     }
     ?>
 </body>

@@ -2,7 +2,7 @@
 
 $servername = "localhost";
 $username = "root";
-$password = "DevonEdwards";
+$password = "Devonedwards";
 $db = "thebestgameever";
 
 $playername = $_POST['playerName'];

@@ -9,7 +9,7 @@
     //connect to DB
     $servername = "localhost";
     $username = "root";
-    $password = "DevonEdwards";
+    $password = "Devonedwards";
     $db = "thebestgameever";
 
     // Create connection
@@ -146,7 +146,30 @@ while ($row = mysqli_fetch_array($result)) {
     echo "<td>" . $row['duration'] . "</td>";
     echo "</tr>";
 }
-echo "</table>";
+
+echo "</table>
+
+<br>
+<br>
+<h4>Players</h4>";
+$result0 = mysqli_query($conn, "SELECT idplayers AS id, name, coins FROM TheBestGameEver.players");
+
+echo "<table>
+
+<tr>
+<th>ID</th>
+<th>Name</th>
+<th>Coins</th>
+</tr>";
+while($row = mysqli_fetch_array($result0)){
+    echo "<tr>";
+    echo "<td>" . $row['id'] . "</td>";
+    echo "<td>" . $row['name'] . "</td>";
+    echo "<td>" . $row['coins'] . "</td>";
+
+    echo "</tr>";
+}
+echo"</table>";
 
 
 
