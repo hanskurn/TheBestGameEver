@@ -151,7 +151,7 @@ echo "</table>
 
 <br>
 <br>
-<h4>Players</h4>";
+<h4>All Players</h4>";
 $result0 = mysqli_query($conn, "SELECT idplayers AS id, name, coins FROM TheBestGameEver.players");
 
 echo "<table>
@@ -166,7 +166,6 @@ while($row = mysqli_fetch_array($result0)){
     echo "<td>" . $row['id'] . "</td>";
     echo "<td>" . $row['name'] . "</td>";
     echo "<td>" . $row['coins'] . "</td>";
-
     echo "</tr>";
 }
 echo"</table>";
@@ -175,7 +174,7 @@ echo"</table>";
 
 mysqli_close($conn);
 ?>
-
+<br>
 <h4>Delete Player</h4>
 <form action="php/deletePlayer.php" method="post" target='deleteplayerfr'>
 <table>

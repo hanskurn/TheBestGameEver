@@ -77,7 +77,7 @@
     echo "<br>";
     
     $selectObjects = "SELECT O.name AS ObjectName, O.strength AS Strength, O.power AS power
-    FROM TheBestGameEver.hasObject H, TheBestGameEver.Character C, TheBestGameEver.CreateObject O, TheBestGameEver.Players P
+    FROM TheBestGameEver.hasObject H, TheBestGameEver.`Character` C, TheBestGameEver.CreateObject O, TheBestGameEver.Players P
     WHERE H.characterName = C.name
     AND H.objectID = O.objectID
     AND P.idPlayers = '$id'
@@ -87,23 +87,56 @@
         printf("Error: %s\n", mysqli_error($conn));
         exit();
     }
-    $row2 = mysqli_fetch_array($result2);
     ?>
 
 <h4><?php echo "Objects Owned:"; ?></h4>
 <?php
-    echo "<table border='1'>
+    echo "<table>
     <tr>
     <th>Object Name</th>
     <th>Strength</th>
     <th>Power</th>
     </tr>";
-    while(mysqli_fetch_array($result2))
+    while($row2 = mysqli_fetch_array($result2))
     {
         echo "<tr>";
         echo "<td>" . $row2['ObjectName'] . "</td>";
         echo "<td>" . $row2['Strength'] . "</td>";
-        echo "<td>" . $row2['Power'] . "</td>";
+        echo "<td>" . $row2['power'] . "</td>";
+        echo "</tr>";
+    }
+    echo "</table>";
+    ?>
+
+<br>
+<h4><?php echo "See who else owns all your objects!"; ?></h4>
+<?php
+    $divisionQuery = "SELECT P3.name as playerName, P3.coins as playerCoins
+        FROM thebestgameever.players P3, thebestgameever.`character` C3
+        WHERE C3.playerId = P3.idPlayers
+        AND P3.idPlayers != '$id'
+        AND NOT EXISTS (SELECT * FROM thebestgameever.hasObject O2 , thebestgameever.`character` C2
+                        WHERE O2.characterName = C2.name AND C2.playerId = '$id'
+                        AND NOT EXISTS
+                        (SELECT * FROM thebestgameever.hasObject O, thebestgameever.`Character` C
+                         WHERE C.playerId = P3.idPlayers AND C.name = O.characterName))";
+    
+    $divisionresult = mysqli_query($conn, $divisionQuery);
+    if (!$divisionresult) {
+        printf("Error: %s\n", mysqli_error($conn));
+        exit();
+    }
+    
+    echo "<table>
+    <tr>
+    <th>Player Name</th>
+    <th>Coins</th>
+    </tr>";
+    while($divisionrow = mysqli_fetch_array($divisionresult))
+    {
+        echo "<tr>";
+        echo "<td>" . $divisionrow['playerName'] . "</td>";
+        echo "<td>" . $divisionrow['playerCoins'] . "</td>";
         echo "</tr>";
     }
     echo "</table>";

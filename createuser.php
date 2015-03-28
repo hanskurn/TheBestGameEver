@@ -47,11 +47,18 @@ function validateForm(){
 <head>
 <link rel="stylesheet" href="css/main.css" type="text/css">
 <title>Create an Account</title>
+<?php
+    session_start();
+    if(empty($_SESSION['error'])){
+        $_SESSION['error'] = "";
+    }
+    ?>
 </head>
 <body>
 <br><h3>Please fill out your user information </h3><br>
 <form name="CreateUser" action="createuser_s.php" method="post" onSubmit="return validateForm();">
 <table>
+<tr> <h5><?php echo $_SESSION['error'];?> </h5></tr>
 <tr>
 <th>Name: </th>
 <th>Email: </th>
