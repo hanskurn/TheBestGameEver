@@ -8,7 +8,7 @@
     
     $servername = "localhost";
     $username = "root";
-    $password = "DevonEdwards";
+    $password = "Devonedwards";
     $dbname = "TheBestGameEver";
     
     // Create connection
@@ -26,7 +26,7 @@
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
     }
-    header('Location: http://localhost/TheBestGameEver/login.php');
+    header('Location: http://localhost/login.php');
     ?>
 <head>
 <link rel="stylesheet" href="css/main.css" type="text/css">

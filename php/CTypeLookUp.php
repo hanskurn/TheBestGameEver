@@ -2,7 +2,7 @@
 
 $servername = "localhost";
 $username = "root";
-$password = "DevonEdwards";
+$password = "Devonedwards";
 $db = "thebestgameever";
 
 $ctype = $_POST['Ctype'];
@@ -22,7 +22,7 @@ if ($ctype != "") {
 
     $row0 = mysqli_fetch_array($result0);
     if ($row0['n'] == 0) {
-        echo "Character type '" . $ctype . "' dose not exist.";
+        echo "Character type '" . $ctype . "' does not exist.";
     } else {
         $result1 = mysqli_query($conn, "SELECT COUNT(*) AS k
                                                         FROM TheBestGameEver.Players P, TheBestGameEver.CharacterType T, TheBestGameEver.Character C

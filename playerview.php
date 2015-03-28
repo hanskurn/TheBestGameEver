@@ -11,7 +11,7 @@
     
     $servername = "localhost";
     $username = "root";
-    $password = "DevonEdwards";
+    $password = "Devonedwards";
     $db = "thebestgameever";
     
     // Create connection
@@ -143,7 +143,59 @@
     ?>
 
 <br>
+<form name="GetAnObject" action="php/getAnObject.php" method="post" target="getobjectfr">
+<h4>Get An Object!</h4>
+<table>
+    <tr>
+        <td colspan = "4">
+            Select an Object:
+        <td>
+    </tr>
+
+<?php
+$servername = "localhost";
+$username = "root";
+$password = "Devonedwards";
+$dbname = "thebestgameever";
+
+// Create connection
+$conn = mysqli_connect($servername, $username, $password, $dbname);
+
+//Check connection
+if (mysqli_connect_errno()){
+
+    echo "Failed to connect to MySQL: " . mysqli_connect_error();
+    die('Mysql connection error');
+}
+
+$query_chartypes = "SELECT objectID, name, strength, power FROM TheBestGameEver.CreateObject
+                    WHERE objectID NOT IN (SELECT H.objectID FROM TheBestGameEver.hasObject H)";
+$result = mysqli_query($conn, $query_chartypes);
+
+if (!$result){
+    echo "No Data Avialible.";
+}
+else {
+    while($row = mysqli_fetch_array($result)){
+        $name = $row['name'];
+        $strength = $row['strength'];
+        $id = $row['objectID'];
+        $power = $row['power'];
+        print '<tr><td align="center"><input type="radio" name="objtype" value="' . $id. '" ></td>
+            <td> Name: ' . $name . '</td>
+            <td> Strength: ' . $strength . '</td>
+            <td> Power: ' . $power .  '</td></tr>';
+    }
+}
+?>
+
+</table>
 <br>
+<input type="submit" name="getobject" value="Get Object">
+</form>
+<iframe name="getobjectfr"></iframe>
+
+
 
 <h4><?php echo "Settings:"; ?> </h4>
 <?php

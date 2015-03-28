@@ -48,14 +48,14 @@
         if (empty($id)){
             session_start();
             $_SESSION['error'] = "We're sorry, we cannot find your account. Please ensure your email and/or password are spelled correctly";
-            header('Location: http://localhost/TheBestGameEver/login.php');
+            header('Location: http://localhost/login.php');
         }
         else { //it's a player then
             session_start();
             $_SESSION['id'] = $id;
             $_SESSION['error'] = "";
             $_SESSION['tstart'] = date('Y-m-d H:i:s');
-            header('Location: http://localhost/TheBestGameEver/playerView.php');
+            header('Location: http://localhost/playerview.php');
         }
     }
     else {

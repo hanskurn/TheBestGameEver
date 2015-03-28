@@ -9,7 +9,7 @@ function emailnotavaible()
     session_start();
     $servername = "localhost";
     $username = "root";
-    $password = "DevonEdwards";
+    $password = "Devonedwards";
     $dbname = "thebestgameever";
     
     // Create connection
@@ -62,10 +62,10 @@ function emailnotavaible()
             echo "Error: " . $sql . "<br>" . $conn->error;
         }
         $_SESSION['error'] = "";
-        header('Location: http://localhost/thebestgameever/login.php');
+        header('Location: http://localhost/login.php');
     } else {
         $_SESSION['error'] = "Sorry that email is already taken, please choose another";
         echo '<script>emailnotavaible()</script>';
-        header('Location: http://localhost/thebestgameever/createuser.php');
+        header('Location: http://localhost/login.php');
     }
     ?>

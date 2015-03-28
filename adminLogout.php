@@ -1,7 +1,7 @@
 <DOCTYPE HTML>
 <html>
 <?php
-    header('Location: http://localhost/TheBestGameEver/login.php');
+    header('Location: http://localhost/login.php');
     ?>
 <head>
 <link rel="stylesheet" href="css/main.css" type="text/css">

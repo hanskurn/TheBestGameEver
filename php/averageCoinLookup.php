@@ -2,7 +2,7 @@
     //connect to DB
     $servername = "localhost";
     $username = "root";
-    $password = "Hannahskurnik";
+    $password = "Devonedwards";
     $db = "thebestgameever";
     
     // Create connection

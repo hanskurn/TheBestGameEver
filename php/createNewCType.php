@@ -4,7 +4,7 @@
     
     $servername = "localhost";
     $username = "root";
-    $password = "DevonEdwards";
+    $password = "Devonedwards";
     $db = "thebestgameever";
     
     $name = $_POST["Name"];
